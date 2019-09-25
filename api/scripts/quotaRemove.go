@@ -7,14 +7,14 @@ import (
 )
 
 func RunQuotaRemove() {
-	timer := time.NewTicker(time.Second * 30)
+	timer := time.NewTicker(time.Minute * 5)
 
 	defer timer.Stop()
 
 	for {
 		select {
 		case <-timer.C:
-			models.RemoveOldQuota(time.Now().Add(-time.Minute))
+			models.RemoveOldQuota(time.Now().Add(-time.Hour))
 
 		case <-stopScripts:
 			return
